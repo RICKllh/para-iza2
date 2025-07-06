@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Izadora</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <header>
+    <h1 class="titulo-estilo">Um carinho em forma de site</h1>
+  </header>
+
+  <main>
+    <section class="carta-container">
+      <div class="carta" id="carta">
+        <div class="carta-frente">📩</div>
+        <div class="carta-verso">
+          <p id="mensagem">   .</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mensagens">
+      <h2 class="titulo-estilo">Trechos para lembrar</h2>
+      <div class="trecho">“É como ver uma tela pintada pela sua alma, uma pintura viva e real que faz meus olhos brilhar.”</div>
+      <div class="trecho">“Às vezes penso que você é criação da minha mente… tão perfeita que parece irreal. Mas é nos teus defeitos que vejo tua beleza mais crua, mais humana. E isso me prende.”</div>
+      <div class="trecho">“Tem pessoas que te fazem sorrir sem motivo, suspirar sabe... É como tocar algo que nunca foi tocado.”</div>
+    </section>
+
+    <section class="audio">
+      <h2 class="titulo-estilo">Áudio Especial</h2>
+      <button onclick="document.getElementById('audioIzadora').play()">▶️ Ouvir</button>
+      <audio id="audioIzadora" src="comemoracao_cr7.mp3"></audio>
+    </section>
+
+    <div class="audio audio-musica">
+      <button id="btnMusica" class="botao-musica">🎶 Tocar música</button>
+    </div>
+  </main>
+
+  <audio id="audioFundo" src="musica.mp3" loop></audio>
+  <audio id="efeitoSom" src="efeito.mp3"></audio>
+
+  <script src="script.js"></script>
+  <script>
+    const btnMusica = document.getElementById('btnMusica');
+    const audioFundo = document.getElementById('audioFundo');
+    let tocando = false;
+
+    btnMusica.addEventListener('click', () => {
+      if (tocando) {
+        audioFundo.pause();
+        btnMusica.textContent = "🎶 Tocar música";
+      } else {
+        audioFundo.play();
+        btnMusica.textContent = "⏸️ Pausar música";
+      }
+      tocando = !tocando;
+    });
+  </script>
+</body>
+</html>
