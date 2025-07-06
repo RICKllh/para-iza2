@@ -1,0 +1,243 @@
+/* Reset e base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100%;
+}
+
+
+body {
+  background-color: #f8c4eb;
+  color: #000000;
+  padding: 30px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow-x: hidden; /* bloqueia só rolagem lateral */
+  overflow-y: auto;   /* permite rolar para baixo */
+}
+
+
+button {
+  transition: all 0.4s ease;
+}
+
+/* Fundo animado */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: radial-gradient(rgb(33, 1, 131) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: girarBrilho 7s linear infinite;
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes girarBrilho {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Título */
+header h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 3rem;
+  color: #470e7a;
+}
+
+.titulo-estilo {
+  font-family: 'Sour Gummy', sans-serif;
+  font-weight: 500; /* ou 700 para mais destaque */
+}
+
+
+
+/* Container da carta */
+.carta-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.carta {
+  width: 220px;
+  height: 140px;
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative;
+}
+
+.carta-frente,
+.carta-verso {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border: 2px solid #470e7a;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: transform 0.8s ease;
+}
+
+.carta-frente {
+  z-index: 2;
+}
+
+.carta-verso {
+  transform: rotateY(180deg);
+  padding: 20px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Animação ao abrir a carta */
+.carta.aberta .carta-frente {
+  transform: rotateY(180deg);
+}
+
+.carta.aberta .carta-verso {
+  transform: rotateY(360deg);
+  z-index: 2;
+}
+
+.carta:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+/* Mensagens */
+.mensagens {
+  margin: 40px auto;
+  max-width: 100%;
+ padding: 20px 80px;
+  background: #fffdfc;
+  border-left: 4px solid #470e7a;
+  border-radius: 6px;
+}
+
+.mensagens h2 {
+  margin-bottom: 10px;
+  color: #470e7a;
+  text-align: center;
+}
+
+.trecho {
+  margin-bottom: 12px;
+  line-height: 1.5; /* 👈 deixa o texto mais “respirado” */
+  font-size: 1rem;   /* 👈 diminui o tamanho do texto */
+  color: #5e5e5e;
+}
+
+/* Áudio */
+.audio {
+  text-align: center;
+  margin-top: px;
+}
+
+.audio h2 {
+  margin-bottom: 10px;
+  color: #470e7a;
+}
+
+.audio button {
+  font-size: 1rem;
+  padding: 0.8rem 1.6rem;
+  background: #ffcdd2;
+  color: #5e3a3a;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.audio button:hover {
+  background: #f8a8b4;
+}
+
+.audio button:active {
+  transform: scale(0.95);
+}
+
+/* Responsivo para telas menores */
+
+ @media (max-width: 768px) {
+  body {
+    font-size: 1.2rem;
+  }
+
+  header h1 {
+    font-size: 2rem;
+    padding: 0 5px;
+  }
+
+  .carta {
+    width: 65vw;
+    height: calc(75vw * 0.50);
+  }
+
+  .carta-frente,
+  .carta-verso {
+    font-size: 1.rem;
+    padding: 1rem;
+  }
+
+  .mensagens {
+    font-size: 1.5rem;
+    padding: 1.2rem;
+  }
+
+  .trecho {
+    font-size: 0.9rem;
+  }
+
+  .mensagens h2 {
+  font-size: 1.6rem; /* 👈 Tamanho do título */
+  font-family: 'Sour Gummy', sans-serif; /* 👈 Fonte personalizada */
+  margin-bottom: 20px; /* 👈 Espaço abaixo do título */
+  text-align: center;  /* 👈 Centraliza (opcional) */
+  color: #470e7a;      /* 👈 Cor, pode mudar se quiser */
+}
+
+
+  .audio,
+  .audio-musica {
+    width: 100%;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .audio button,
+  .botao-musica {
+    font-size: 1.0rem !important; /* antes era 1.5rem */
+    padding: 6px 16px !important;
+    width: 60% !important;
+    max-width: 280px !important;
+    margin: 16px auto !important;
+    display: block !important;
+    border-radius: 26px !important;
+  }
+}
+
+
+
+
