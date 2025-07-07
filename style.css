@@ -6,29 +6,53 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
+:root {
+  --bg-color: #f8c4eb;
+  --text-color: #000;
+  --titulo-color: #470e7a;
+  --box-color: #ffffff;
+  --borda-color: #470e7a;
+  --trecho-color: #5e5e5e;
+  --botao-bg: #ffcdd2;
+  --botao-text: #5e3a3a;
+  --coracao-color: rgb(89, 67, 133);
+  --pontos-bg: radial-gradient(rgb(33, 1, 131) 1px, transparent 1px);
+}
+
+/* Modo escuro */
+body.modo-escuro {
+  --bg-color: #1e1e2f;
+  --text-color: #ffffff;
+  --titulo-color: #f3d6ff;
+  --box-color: #2c2c3e;
+  --borda-color: #ad7efc;
+  --trecho-color: #dcdcdc;
+  --botao-bg: #4b3b69;
+  --botao-text: #f9d3ff;
+  --coracao-color: #b67cff;
+  --pontos-bg: radial-gradient(#b67cff 1px, transparent 1px);
+}
+
 html {
   overflow-x: hidden;
   overflow-y: auto;
   height: 100%;
 }
 
-
 body {
-  background-color: #f8c4eb;
-  color: #000000;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   padding: 30px;
   transition: all 0.3s ease;
   position: relative;
-  overflow-x: hidden; /* bloqueia só rolagem lateral */
-  overflow-y: auto;   /* permite rolar para baixo */
+  overflow-x: hidden;
+  overflow-y: auto;
 }
-
 
 button {
   transition: all 0.4s ease;
 }
 
-/* Fundo animado */
 body::before {
   content: "";
   position: fixed;
@@ -36,7 +60,7 @@ body::before {
   left: -50%;
   width: 200%;
   height: 200%;
-  background-image: radial-gradient(rgb(33, 1, 131) 1px, transparent 1px);
+  background-image: var(--pontos-bg);
   background-size: 40px 40px;
   animation: girarBrilho 7s linear infinite;
   opacity: 0.2;
@@ -54,17 +78,46 @@ header h1 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 3rem;
-  color: #470e7a;
+  color: var(--titulo-color);
 }
 
 .titulo-estilo {
   font-family: 'Sour Gummy', sans-serif;
-  font-weight: 500; /* ou 700 para mais destaque */
+  font-weight: 500;
+}
+
+/* Botão de tema */
+.botao-tema {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+  width: 46px;
+  height: 46px;
+  background: var(--botao-bg);
+  color: var(--botao-text);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.botao-tema:hover {
+  transform: scale(1.1);
 }
 
 
+.botao-tema:hover {
+  transform: scale(1.05);
+}
 
-/* Container da carta */
+
+/* Carta */
 .carta-container {
   display: flex;
   justify-content: center;
@@ -83,8 +136,8 @@ header h1 {
 .carta-verso {
   width: 100%;
   height: 100%;
-  background: #ffffff;
-  border: 2px solid #470e7a;
+  background: var(--box-color);
+  border: 2px solid var(--borda-color);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   position: absolute;
@@ -109,7 +162,6 @@ header h1 {
   font-size: 1rem;
 }
 
-/* Animação ao abrir a carta */
 .carta.aberta .carta-frente {
   transform: rotateY(180deg);
 }
@@ -121,48 +173,48 @@ header h1 {
 
 .carta:hover {
   transform: scale(1.05);
-  transition: transform 0.3s ease;
 }
 
 /* Mensagens */
 .mensagens {
   margin: 40px auto;
   max-width: 100%;
- padding: 20px 80px;
-  background: #fffdfc;
-  border-left: 4px solid #470e7a;
+  padding: 20px 80px;
+  background: var(--box-color);
+  border-left: 4px solid var(--borda-color);
   border-radius: 6px;
 }
 
 .mensagens h2 {
   margin-bottom: 10px;
-  color: #470e7a;
+  color: var(--titulo-color);
   text-align: center;
 }
 
 .trecho {
   margin-bottom: 12px;
-  line-height: 1.5; /* 👈 deixa o texto mais “respirado” */
-  font-size: 1rem;   /* 👈 diminui o tamanho do texto */
-  color: #5e5e5e;
+  line-height: 1.5;
+  font-size: 1rem;
+  color: var(--trecho-color);
 }
 
 /* Áudio */
-.audio {
+.audio,
+.audio-musica {
   text-align: center;
-  margin-top: px;
 }
 
 .audio h2 {
   margin-bottom: 10px;
-  color: #470e7a;
+  color: var(--titulo-color);
 }
 
-.audio button {
+.audio button,
+.botao-musica {
   font-size: 1rem;
   padding: 0.8rem 1.6rem;
-  background: #ffcdd2;
-  color: #5e3a3a;
+  background: var(--botao-bg);
+  color: var(--botao-text);
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -170,17 +222,18 @@ header h1 {
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.audio button:hover {
-  background: #f8a8b4;
+.audio button:hover,
+.botao-musica:hover {
+  filter: brightness(1.1);
 }
 
-.audio button:active {
+.audio button:active,
+.botao-musica:active {
   transform: scale(0.95);
 }
 
-/* Responsivo para telas menores */
-
- @media (max-width: 768px) {
+/* Responsivo */
+@media (max-width: 768px) {
   body {
     font-size: 1.2rem;
   }
@@ -197,7 +250,7 @@ header h1 {
 
   .carta-frente,
   .carta-verso {
-    font-size: 1.rem;
+    font-size: 1rem;
     padding: 1rem;
   }
 
@@ -211,24 +264,22 @@ header h1 {
   }
 
   .mensagens h2 {
-  font-size: 1.6rem; /* 👈 Tamanho do título */
-  font-family: 'Sour Gummy', sans-serif; /* 👈 Fonte personalizada */
-  margin-bottom: 20px; /* 👈 Espaço abaixo do título */
-  text-align: center;  /* 👈 Centraliza (opcional) */
-  color: #470e7a;      /* 👈 Cor, pode mudar se quiser */
-}
-
+    font-size: 1.6rem;
+    font-family: 'Sour Gummy', sans-serif;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--titulo-color);
+  }
 
   .audio,
   .audio-musica {
     width: 100%;
-    text-align: center;
     padding: 0 1rem;
   }
 
   .audio button,
   .botao-musica {
-    font-size: 1.0rem !important; /* antes era 1.5rem */
+    font-size: 1rem !important;
     padding: 6px 16px !important;
     width: 60% !important;
     max-width: 280px !important;
@@ -236,8 +287,75 @@ header h1 {
     display: block !important;
     border-radius: 26px !important;
   }
-}     
+}
+
+/* Corações */
+.coracoes-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -2;
+}
+
+.coracao {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--coracao-color);
+  transform: rotate(45deg);
+  animation: subir 6s linear infinite;
+  opacity: 0.6;
+}
+
+.coracao::before,
+.coracao::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--coracao-color);
+  border-radius: 50%;
+}
+
+.coracao::before {
+  top: -10px;
+  left: 0;
+}
+
+.coracao::after {
+  top: 0;
+  left: -10px;
+}
 
 
+.coracao {
+  transform: rotate(45deg);
+  animation: subir 6s linear infinite;
+}
 
+.coracao::before {
+  top: -10px;
+  left: 0;
+}
 
+.coracao::after {
+  top: 0;
+  left: -10px;
+}
+
+@keyframes subir {
+  0% {
+    bottom: -10px;
+    transform: translateX(0) rotate(45deg);
+    opacity: 0.6;
+  }
+  100% {
+    bottom: 100%;
+    transform: translateX(50px) rotate(45deg);
+    opacity: 0;
+  }
+}
