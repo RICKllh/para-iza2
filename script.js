@@ -43,3 +43,30 @@ btnMusica.addEventListener('click', () => {
     btnMusica.textContent = '🎶 Tocar música';
   }
 });
+
+// FUNÇÃO DOS CORAÇÕES (fora do botão!)
+function criarCoracao() {
+  const coracoesContainer = document.querySelector('.coracoes-container');
+  const coracao = document.createElement('div');
+  coracao.classList.add('coracao');
+  coracao.style.left = Math.random() * 100 + 'vw';
+  coracao.style.animationDuration = (4 + Math.random() * 2) + 's';
+  coracoesContainer.appendChild(coracao);
+
+  setTimeout(() => {
+    coracao.remove();
+  }, 6000);
+}
+
+// Iniciar os corações automaticamente
+setInterval(criarCoracao, 500);
+
+const botaoTema = document.getElementById('toggleTema');
+let modoEscuro = false;
+
+botaoTema.addEventListener('click', () => {
+  document.body.classList.toggle('modo-escuro');
+  modoEscuro = !modoEscuro;
+  botaoTema.textContent = modoEscuro ? '☀️' : '🌙';
+});
+
